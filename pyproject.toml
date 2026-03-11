@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aef"
+version = "0.1.0"
+description = "AlphaEarth Foundations Satellite Embeddings - FAISS kNN search"
+requires-python = ">=3.11"
+dependencies = [
+    "earthengine-api",
+    "numpy",
+    "faiss-cpu",
+    "matplotlib",
+    "folium",
+    "pandas",
+    "tqdm",
+    "fastapi",
+    "uvicorn[standard]",
+]
+
+[dependency-groups]
+notebook = ["jupyterlab"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/aef"]

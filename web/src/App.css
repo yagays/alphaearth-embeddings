@@ -1,0 +1,227 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Left panel: Settings */
+.settings-panel {
+  width: 260px;
+  min-width: 260px;
+  background: #16213e;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-right: 1px solid #0f3460;
+  overflow-y: auto;
+}
+
+.settings-panel h2 {
+  font-size: 1.1rem;
+  color: #e94560;
+  margin-bottom: 4px;
+}
+
+.settings-panel label {
+  display: block;
+  font-size: 0.85rem;
+  color: #a0a0b0;
+  margin-bottom: 4px;
+}
+
+.settings-panel select,
+.settings-panel input[type="range"] {
+  width: 100%;
+  padding: 6px 8px;
+  background: #0f3460;
+  color: #e0e0e0;
+  border: 1px solid #533483;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.settings-panel select:focus {
+  outline: none;
+  border-color: #e94560;
+}
+
+.settings-panel .value-display {
+  font-size: 0.85rem;
+  color: #e94560;
+  text-align: right;
+}
+
+.settings-panel button {
+  padding: 10px 16px;
+  background: #e94560;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.settings-panel button:hover:not(:disabled) {
+  background: #c73651;
+}
+
+.settings-panel button:disabled {
+  background: #533483;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.settings-panel .status {
+  font-size: 0.8rem;
+  color: #a0a0b0;
+  padding: 8px;
+  background: #0f3460;
+  border-radius: 4px;
+}
+
+.settings-panel .status.loaded {
+  color: #4ecdc4;
+}
+
+.settings-panel .status.error {
+  color: #e94560;
+}
+
+/* Center: Map */
+.map-container {
+  flex: 1;
+  position: relative;
+}
+
+.map-container .leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+/* Right panel: Results */
+.results-panel {
+  width: 320px;
+  min-width: 320px;
+  background: #16213e;
+  border-left: 1px solid #0f3460;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.results-panel h2 {
+  font-size: 1.1rem;
+  color: #e94560;
+  padding: 16px 20px 8px;
+}
+
+.results-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 12px 12px;
+}
+
+.result-card {
+  background: #0f3460;
+  border: 1px solid #533483;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.result-card:hover,
+.result-card.highlighted {
+  border-color: #e94560;
+  background: #1a1a4e;
+}
+
+.result-card .rank {
+  font-size: 0.8rem;
+  color: #e94560;
+  font-weight: bold;
+}
+
+.result-card .similarity {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #4ecdc4;
+}
+
+.result-card .coords {
+  font-size: 0.8rem;
+  color: #a0a0b0;
+  margin-top: 4px;
+}
+
+.result-card .mini-map {
+  width: 100%;
+  height: 120px;
+  margin-top: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.result-card .mini-map .leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+.no-results {
+  padding: 20px;
+  text-align: center;
+  color: #a0a0b0;
+  font-size: 0.9rem;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: #e94560;
+}
+
+.loading::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e94560;
+  border-top-color: transparent;
+  border-radius: 50%;
+  margin-left: 8px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Leaflet overrides for dark theme */
+.leaflet-control-zoom a {
+  background: #16213e !important;
+  color: #e0e0e0 !important;
+  border-color: #533483 !important;
+}
+
+.leaflet-bar {
+  border: 1px solid #533483 !important;
+}
